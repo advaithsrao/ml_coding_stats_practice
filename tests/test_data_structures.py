@@ -1,6 +1,6 @@
 import pytest
 
-from data_structures.arrays import Stack
+from data_structures.arrays import Stack, Queue
 from data_structures.arrays import parenthesis_match
 
 @pytest.fixture
@@ -37,3 +37,33 @@ def test_stack_parenthesis_example(par_inputs):
     
     assert outputs[0] == True
     assert outputs[1] == False
+
+# queues
+def test_queue(num_inputs):
+    _queue = Queue()
+    
+    for _input in num_inputs[:5]:
+        _queue.enqueue(_input)
+    
+    assert _queue.front == 0
+    assert _queue.rear == 5
+    assert _queue.size == 5
+    assert _queue.capacity == 8
+
+    for _input in range(2):
+        _queue.dequeue()
+    
+    assert _queue.front == 2
+    assert _queue.rear == 5
+    assert _queue.size == 3
+    assert _queue.capacity == 8
+
+    for _input in num_inputs[5:]:
+        _queue.enqueue(_input)
+    
+    assert _queue.front == 2
+    assert _queue.rear == 1
+    assert _queue.size == 7
+    assert _queue.capacity == 8
+    
+    assert not _queue.is_empty()
