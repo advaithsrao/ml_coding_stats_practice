@@ -84,6 +84,30 @@ class Queue:
         self.queue += [None] * self.capacity
         self.capacity *= 2
 
+# deque
+
+class Deque:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def addRear(self, item):
+        self.items.append(item)
+
+    def addFront(self, item):
+        self.items.insert(0, item)
+
+    def removeFront(self):
+        return self.items.pop(0)
+
+    def removeRear(self):
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
 
 if __name__ == '__main__':
     # Stacks
@@ -137,3 +161,19 @@ if __name__ == '__main__':
     q.dequeue()
     q.dequeue()
     q.dequeue()
+
+    # Deque
+    print("="*10)
+    print("DEQUE")
+    d = Deque()
+    print(d.isEmpty())
+    d.addRear(4)
+    d.addRear('dog')
+    d.addFront('cat')
+    d.addFront(True)
+    print(d.size())
+    print(d.isEmpty())
+    d.addRear(8.4)
+    print(d.removeRear())
+    print(d.removeFront())
+    print("="*10)

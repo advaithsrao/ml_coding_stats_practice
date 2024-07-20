@@ -1,6 +1,6 @@
 import pytest
 
-from data_structures.arrays import Stack, Queue
+from data_structures.arrays import Stack, Queue, Deque
 from data_structures.arrays import parenthesis_match
 
 @pytest.fixture
@@ -67,3 +67,25 @@ def test_queue(num_inputs):
     assert _queue.capacity == 8
     
     assert not _queue.is_empty()
+
+def test_deque(num_inputs):
+    _deque = Deque()
+    
+    assert _deque.is_empty()
+
+    for _input in num_inputs[:5]:
+        _deque.addFront(_input)
+    
+    assert _deque.items[-1] == 1
+    assert _deque.items[0] == 5
+
+    for _ in range(5):
+        _deque.removeRear()
+    
+    assert _deque.is_empty()
+    
+    for _input in num_inputs[:5]:
+        _deque.addRear(_input)
+    
+    assert _deque.items[-1] == 5
+    assert _deque.items[0] == 1
