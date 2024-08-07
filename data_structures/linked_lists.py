@@ -1,11 +1,8 @@
 from abc import ABC, abstractmethod
+from .node import LLNode as Node
 
-# Node class
-class Node:
-    def __init__(self, val):
-        self.value = val
-        self.next = None
 
+# Abstract Base Class for Linked Lists
 class LinkedList(ABC):
     def __init__(self):
         super().__init__()
