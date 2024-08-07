@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .node import LLNode as Node
+from data_structures.node import LLNode as Node
 
 
 # Abstract Base Class for Linked Lists

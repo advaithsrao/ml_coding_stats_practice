@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from node import TreeNode as Node
+from data_structures.node import TreeNode as Node
 
 # Tree base class
 class Tree(ABC):

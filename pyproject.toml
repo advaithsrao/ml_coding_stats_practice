@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "ml_coding_stats_practice"
+version = "0.1.0"
+description = "This package contains scripts for implementation of ML and DSA Concepts"
+authors = ["Advaith Rao <advaith652@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    {include = "algorithms"},
+    {include = "data_structures"},
+    {include = "ml"},
+    {include = "stats"}
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.9"
+jupyter = "*"
+pandas = "*"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+pytest-xdist = "*"

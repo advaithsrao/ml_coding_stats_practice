@@ -1,4 +1,4 @@
-name: Data Structures and Algorithms Practice
+name: Scripts CICD Pipeline
 
 on:
   push:
@@ -25,9 +25,17 @@ jobs:
       run: |
         pip install --upgrade pip
 
-    - name: Install Requirements
+    - name: Install Poetry
       run: |
-        pip install -r requirements.txt
+        pip install poetry
+      env:
+        POETRY_HOME: $HOME/.poetry
+        PATH: $HOME/.poetry/bin:$PATH
+
+    - name: Install project dependencies
+      run: |
+        poetry install
+      working-directory: ${{ github.workspace }}
 
     - name: Run tests
       run: |
