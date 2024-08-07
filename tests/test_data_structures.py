@@ -1,8 +1,8 @@
 import pytest
-
+from data_structures import Node, LLNode, TreeNode
 from data_structures.arrays import Stack, Queue, Deque
 from data_structures.arrays import parenthesis_match
-from data_structures.linked_lists import Node, SinglyLinkedList, DoublyLinkedList
+from data_structures.linked_lists import SinglyLinkedList, DoublyLinkedList
 
 @pytest.fixture
 def num_inputs():
@@ -95,7 +95,7 @@ def test_deque(num_inputs):
 # linked lists
 ## singly linked list
 def test_singly_linked_list():
-    nodes = [Node(i) for i in range(5)]
+    nodes = [LLNode(i) for i in range(5)]
     sll = SinglyLinkedList()
     sll.head = nodes[0]
     
@@ -107,16 +107,16 @@ def test_singly_linked_list():
     sll.delete_from_beginning()
     assert sll.return_list() == [1,2,3,4]
     
-    sll.insert_at_beginning(Node(-1))
+    sll.insert_at_beginning(LLNode(-1))
     assert sll.return_list() == [-1,1,2,3,4]
     
-    sll.insert_at_end(Node(5))
+    sll.insert_at_end(LLNode(5))
     assert sll.return_list() == [-1,1,2,3,4,5]
     
-    sll.insert_at_position(Node(-3), 2)
+    sll.insert_at_position(LLNode(-3), 2)
     assert sll.return_list() == [-1,1,-3,2,3,4,5]
     
-    sll.insert_after_element(Node(-2), nodes[1])
+    sll.insert_after_element(LLNode(-2), nodes[1])
     assert sll.return_list() == [-1,1,-2,-3,2,3,4,5]
     
     sll.delete_from_end()
@@ -130,7 +130,7 @@ def test_singly_linked_list():
 
 ## doubly linked list
 def test_doubly_linked_list():
-    nodes = [Node(i) for i in range(5)]
+    nodes = [LLNode(i) for i in range(5)]
     dll = DoublyLinkedList()
     dll.head = nodes[0]
     
@@ -143,16 +143,16 @@ def test_doubly_linked_list():
     dll.delete_from_beginning()
     assert dll.return_list() == [1,2,3,4]
     
-    dll.insert_at_beginning(Node(-1))
+    dll.insert_at_beginning(LLNode(-1))
     assert dll.return_list() == [-1,1,2,3,4]
     
-    dll.insert_at_end(Node(5))
+    dll.insert_at_end(LLNode(5))
     assert dll.return_list() == [-1,1,2,3,4,5]
     
-    dll.insert_at_position(Node(-3), 2)
+    dll.insert_at_position(LLNode(-3), 2)
     assert dll.return_list() == [-1,1,-3,2,3,4,5]
     
-    dll.insert_after_element(Node(-2), nodes[1])
+    dll.insert_after_element(LLNode(-2), nodes[1])
     assert dll.return_list() == [-1,1,-2,-3,2,3,4,5]
     
     dll.delete_from_end()

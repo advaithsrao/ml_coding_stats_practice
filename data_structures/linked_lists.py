@@ -1,57 +1,4 @@
-from abc import ABC, abstractmethod
-from data_structures.node import LLNode as Node
-
-
-# Abstract Base Class for Linked Lists
-class LinkedList(ABC):
-    def __init__(self):
-        super().__init__()
-    
-    @abstractmethod
-    def return_list(self) -> list:
-        # returns elements as a list
-        pass
-
-    @abstractmethod
-    def insert_at_beginning(self, node: Node):
-        # inserts new first element
-        pass
-
-    @abstractmethod
-    def insert_at_end(self, node: Node):
-        # inserts new end element
-        pass
-    
-    @abstractmethod
-    def insert_at_position(self, node: Node, pos: int):
-        # inserts new node at Position
-        # Position is the index here
-        pass
-
-    @abstractmethod
-    def insert_after_element(self, node: Node, element: Node):
-        # insert after element
-        pass
-
-    @abstractmethod
-    def delete_from_beginning(self):
-        # deletes the first element
-        pass
-    
-    @abstractmethod
-    def delete_from_end(self):
-        # deletes the end element
-        pass
-    
-    @abstractmethod
-    def delete_from_position(self, pos: int):
-        # deletes the a given position
-        pass
-
-    @abstractmethod
-    def delete_after_element(self, element: Node):
-        # deletes after element
-        pass
+from data_structures import LinkedList, LLNode
 
 
 # LLs
@@ -71,7 +18,7 @@ class SinglyLinkedList(LinkedList):
         print(f'List: {result}')
         return result
 
-    def insert_at_beginning(self, node: Node):
+    def insert_at_beginning(self, node: LLNode):
         cursor = self.head
         self.head = node
         node.next = cursor
@@ -85,7 +32,7 @@ class SinglyLinkedList(LinkedList):
         node.next = None
         print(f'Inserted at end: {node.value}')
     
-    def insert_at_position(self, node: Node, pos: int):
+    def insert_at_position(self, node: LLNode, pos: int):
         cursor = self.head
         index = 0
         
@@ -102,7 +49,7 @@ class SinglyLinkedList(LinkedList):
 
         print(f'Inserted at {pos}: {node.value}')
     
-    def insert_after_element(self, node: Node, element: Node):
+    def insert_after_element(self, node: LLNode, element: LLNode):
         cursor = self.head
         
         while cursor != element and cursor != None:
@@ -142,7 +89,7 @@ class SinglyLinkedList(LinkedList):
         cursor.next = cursor.next.next
         print(f'Deleted at {pos}: {old.value}')
     
-    def delete_after_element(self, element: Node):
+    def delete_after_element(self, element: LLNode):
         cursor = self.head
         while cursor != element and cursor != None:
             cursor = cursor.next
@@ -171,7 +118,7 @@ class DoublyLinkedList(LinkedList):
         print(f'List: {result}')
         return result
 
-    def insert_at_beginning(self, node: Node):
+    def insert_at_beginning(self, node: LLNode):
         cursor = self.head
         self.head = node
         node.next = cursor
@@ -179,7 +126,7 @@ class DoublyLinkedList(LinkedList):
         node.prev = None
         print(f'Inserted at beginning: {self.head.value}')
     
-    def insert_at_end(self, node: Node):
+    def insert_at_end(self, node: LLNode):
         cursor = self.head
         while cursor.next != None:
             cursor = cursor.next
@@ -188,7 +135,7 @@ class DoublyLinkedList(LinkedList):
         node.next = None
         print(f'Inserted at end: {node.value}')
     
-    def insert_at_position(self, node: Node, pos: int):
+    def insert_at_position(self, node: LLNode, pos: int):
         cursor = self.head
         index = 0
         
@@ -207,7 +154,7 @@ class DoublyLinkedList(LinkedList):
 
         print(f'Inserted at {pos}: {node.value}')
     
-    def insert_after_element(self, node: Node, element: Node):
+    def insert_after_element(self, node: LLNode, element: LLNode):
         cursor = self.head
         
         while cursor != element and cursor != None:
@@ -252,7 +199,7 @@ class DoublyLinkedList(LinkedList):
         cursor.next.prev = cursor
         print(f'Deleted at {pos}: {old.value}')
     
-    def delete_after_element(self, element: Node):
+    def delete_after_element(self, element: LLNode):
         cursor = self.head
         while cursor != element and cursor != None:
             cursor = cursor.next
