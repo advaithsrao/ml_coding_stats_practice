@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from collections import Counter
+from typing import List, Union
 
 from ml import time_ml_training, logger
 from ml.classification import SupervisedClassifier
@@ -22,8 +23,8 @@ class KNN(SupervisedClassifier):
     @time_ml_training
     def fit(
         self, 
-        X: list | pd.DataFrame | np.ndarray,
-        y: list | pd.DataFrame | np.ndarray
+        X: Union[List, pd.DataFrame, np.ndarray],
+        y: Union[List, pd.DataFrame, np.ndarray]
     ):
         self.X_train = convert_to_np_array(X)
         self.y_train = convert_to_np_array(y)
@@ -32,7 +33,7 @@ class KNN(SupervisedClassifier):
 
     def predict(
         self,
-        X: list | pd.DataFrame | np.ndarray
+        X: Union[List, pd.DataFrame, np.ndarray]
     ):
         X_test = convert_to_np_array(X)
         preds = []
