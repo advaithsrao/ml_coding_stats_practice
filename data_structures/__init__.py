@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 # Node base class
 class Node(ABC):
     def __init__(self, val):
+        super().__init__(val)
         self.value = val
 
 class LLNode(Node):

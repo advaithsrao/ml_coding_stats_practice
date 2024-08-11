@@ -17,6 +17,8 @@ packages = [
 python = "^3.9"
 jupyter = "*"
 pandas = "*"
+numpy = "*"
+scikit-learn = "*"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
