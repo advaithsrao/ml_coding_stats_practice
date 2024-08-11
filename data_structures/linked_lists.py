@@ -213,7 +213,7 @@ class DoublyLinkedList(LinkedList):
 
 
 if __name__ == '__main__':
-    nodes = [Node(i) for i in range(1,5)]
+    nodes = [LLNode(i) for i in range(1,5)]
 
     #singly ll
     print("="*10)
@@ -235,22 +235,22 @@ if __name__ == '__main__':
     print('After deleting head')
     _ = sll.return_list()
 
-    sll.insert_at_beginning(Node(-1))
+    sll.insert_at_beginning(LLNode(-1))
 
     print('After inserting new head')
     _ = sll.return_list()
 
-    sll.insert_at_end(Node(5))
+    sll.insert_at_end(LLNode(5))
 
     print('After inserting new end')
     _ = sll.return_list()
 
-    sll.insert_at_position(Node(-3), 2)
+    sll.insert_at_position(LLNode(-3), 2)
 
     print('After inserting at position 2')
     _ = sll.return_list()
 
-    sll.insert_after_element(Node(-2), nodes[1])
+    sll.insert_after_element(LLNode(-2), nodes[1])
 
     print('After inserting after 2')
     _ = sll.return_list()
@@ -298,22 +298,22 @@ if __name__ == '__main__':
     print('After deleting head')
     _ = dll.return_list()
 
-    dll.insert_at_beginning(Node(-1))
+    dll.insert_at_beginning(LLNode(-1))
     
     print('After inserting new head')
     _ = dll.return_list()
 
-    dll.insert_at_end(Node(5))
+    dll.insert_at_end(LLNode(5))
 
     print('After inserting new end')
     _ = dll.return_list()
 
-    dll.insert_at_position(Node(-3), 2)
+    dll.insert_at_position(LLNode(-3), 2)
 
     print('After inserting at position 2')
     _ = dll.return_list()
 
-    dll.insert_after_element(Node(-2), nodes[1])
+    dll.insert_after_element(LLNode(-2), nodes[1])
 
     print('After inserting after 2')
     _ = dll.return_list()
