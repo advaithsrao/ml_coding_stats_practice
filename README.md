@@ -1,1 +1,1 @@
-# DSA Practice Repository
+# ML and General Coding Practice Repository
