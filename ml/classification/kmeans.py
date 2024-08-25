@@ -28,7 +28,7 @@ class KMeans(UnsupervisedClassifier):
         self.k = k
         self.centroids = {id: None for id in range(self.k)}
         self.clusters = {id: [] for id in range(self.k)}
-        self.X_train = self.y_train = None
+        self.X_train = None
         self.logger = logger
         self.iteration_number = 1
         
