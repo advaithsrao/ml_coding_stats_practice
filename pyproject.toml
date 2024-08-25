@@ -19,6 +19,7 @@ jupyter = "*"
 pandas = "*"
 numpy = "*"
 scikit-learn = "*"
+matplotlib = "*"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]

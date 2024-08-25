@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from typing import List, Union
+
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
-
 
 def convert_to_np_array(x: Union[List, pd.DataFrame, np.ndarray]) -> np.ndarray:
     if isinstance(x, pd.DataFrame):
@@ -23,7 +23,7 @@ def convert_to_np_array(x: Union[List, pd.DataFrame, np.ndarray]) -> np.ndarray:
         return x
 
 
-def euclidean_distance(x: np.ndarray,y: np.ndarray) -> np.float64:
+def euclidean_distance(x: np.ndarray, y: np.ndarray) -> np.float64:
     return np.sqrt(np.sum((x - y)**2))
 
 

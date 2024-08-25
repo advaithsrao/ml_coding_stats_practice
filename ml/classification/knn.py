@@ -34,7 +34,7 @@ class KNN(SupervisedClassifier):
     def predict(
         self,
         X: Union[List, pd.DataFrame, np.ndarray]
-    ):
+    ) -> np.array:
         X_test = convert_to_np_array(X)
         preds = []
         

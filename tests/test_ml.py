@@ -11,6 +11,11 @@ def test_knn(sample_data):
     knn = KNN(k=1)
     knn.fit(X_train, y_train)
     preds = knn.predict(X_test)
+
+    #Check fns
+    assert 'fit'
+
+    #Results 
     results = get_classification_results(y_test, preds)
     assert results['accuracy'] > 0.9
     assert results['precision'] > 0.9
