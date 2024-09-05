@@ -8,7 +8,7 @@ from ml import time_ml_training, logger
 from ml.classification import UnsupervisedClassifier
 from ml.helpers import (
     convert_to_np_array, 
-    euclidean_distance,
+    calculate_distance,
     load_sample_dataset,
 )
 
@@ -93,18 +93,20 @@ class KMeans(UnsupervisedClassifier):
         x: np.ndarray
     ) -> int:
         return np.argmin([
-            euclidean_distance(
+            calculate_distance(
                 _centroid,
-                x
+                x,
+                type = 'euclidean'
             ) for _centroid in centroids
         ])
     
     def calculate_inertia(self):
         return np.sum([
             np.sum([
-                euclidean_distance(
+                calculate_distance(
                     self.centroids[_cluster_number],
-                    _x
+                    _x,
+                    type = 'euclidean'
                 ) for _x in self.clusters[_cluster_number]
             ]) for _cluster_number in range(self.k)
         ])

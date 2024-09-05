@@ -1,3 +1,7 @@
+from abc import ABC, abstractmethod
+import pandas as pd
+import numpy as np
+from typing import List, Union
 import time
 import logging
 
@@ -14,7 +18,31 @@ def time_ml_training(func):
         start = time.time()
         logger.info("----- Training started -----")
         result = func(*args,**kwargs)
-        logger.info(f"Time taken: {time.time() - start}")
+        logger.info(f"Time taken for training: {time.time() - start}")
         logger.info("----- Training complete -----")
         return result
     return wrapper
+
+def time_operation(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        logger.info(f"*** Operation Name: {func.__name__} ***")
+        result = func(*args, **kwargs)
+        logger.info(f"Time taken for operation: {time.time() - start}")
+        logger.info("*** Operation Complete ***")
+        return result
+    return wrapper
+
+
+class GradientDescent:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+    
+    @abstractmethod
+    def update_param(
+        self,
+        param: float,
+        *args,
+        **kwargs
+    ):
+        pass

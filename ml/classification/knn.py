@@ -6,10 +6,10 @@ from typing import List, Union
 from ml import time_ml_training, logger
 from ml.classification import SupervisedClassifier
 from ml.helpers import (
-    convert_to_np_array, 
-    euclidean_distance, 
-    load_sample_dataset, 
-    get_classification_results
+    convert_to_np_array,
+    calculate_distance,
+    load_sample_dataset,
+    get_classification_results,
 )
 
 
@@ -49,7 +49,7 @@ class KNN(SupervisedClassifier):
     ):
         distances = np.argsort(
             np.array(
-                [euclidean_distance(x, _X) for _X in self.X_train]
+                [calculate_distance(x, _X, type='euclidean') for _X in self.X_train]
             )
         )[:self.k]
 

@@ -20,6 +20,7 @@ pandas = "*"
 numpy = "*"
 scikit-learn = "*"
 matplotlib = "*"
+flask = "*"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
