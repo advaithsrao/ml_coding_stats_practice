@@ -14,13 +14,16 @@ packages = [
 
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 jupyter = "*"
 pandas = "*"
 numpy = "*"
 scikit-learn = "*"
 matplotlib = "*"
 flask = "*"
+torch = "2.0.0"
+torchvision = "0.15.1"
+
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
