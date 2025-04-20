@@ -2,21 +2,27 @@ from typing import Union
 import numpy as np
 
 from ml import GradientDescent, time_operation, logger
-    
+
+RMSE = "rmse"
+BCE = "cross_entropy"
 
 def loss_and_gradients(X: np.ndarray, y_true: np.ndarray, y_pred: np.ndarray, loss: str) -> dict:
-    _, num_features = X.shape
+    num_samples, _ = X.shape
     loss_gradients_dict = {
         "loss": None,
         "gradients": None
     }
-    
-    if loss == "rmse":
-        loss_gradients_dict["loss"] = 1/num_features * np.sum((y_true - y_pred) ** 2)
-        loss_gradients_dict["gradients"] = 2/num_features * np.dot(X.T, y_true - y_pred)
-    elif loss == "cross_entropy":
-        loss_gradients_dict["loss"] = 1/num_features * np.sum(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
-        loss_gradients_dict["gradients"] = 1/num_features * np.dot(X.T, y_true - y_pred)
+    if loss == RMSE:
+        mse = np.mean((y_true - y_pred) ** 2)
+        loss_gradients_dict["loss"] = np.sqrt(mse)  # for logging
+        loss_gradients_dict["gradients"] = -2 / num_samples * np.dot(X.T, (y_true - y_pred))
+    elif loss == BCE:
+        eps = 1e-9
+        y_pred_clipped = np.clip(y_pred, eps, 1 - eps)
+        loss_gradients_dict["loss"] = -np.mean(
+            y_true * np.log(y_pred_clipped) + (1 - y_true) * np.log(1 - y_pred_clipped)
+        )
+        loss_gradients_dict["gradients"] = 1 / X.shape[0] * np.dot(X.T, (y_pred - y_true))
     else:
         raise ValueError("Invalid Loss Function")
     
@@ -30,8 +36,8 @@ class BatchGradientDescent(GradientDescent):
         y_true: np.ndarray,
         y_pred: np.ndarray,
         num_epochs: int = 5,
-        learning_rate: float = 2e-05,
-        loss: str = "rmse"
+        learning_rate: float = 0.01,
+        loss: str = RMSE
     ):
         super().__init__()
         self.param = param
@@ -57,20 +63,19 @@ class BatchGradientDescent(GradientDescent):
 
         # early stopping criteria
         # if the previous iteration's param values are the same as the current iteration's param values to 3 decimal values
-        _tmp_param = None
+        # _tmp_param = None
 
-        while not bool(
-            np.equal(
-                _tmp_param, 
-                np.round(
-                    np.array(self.param),
-                    3
-                )
-            ).all()
-        ) and self.iteration_number <= self.num_epochs:
-            _tmp_param = np.round(np.array(self.param), 3)
-            
+        while self.iteration_number <= self.num_epochs:
+            # _tmp_param = np.round(np.array(self.param))
+
             self.logger.info(f"Epoch: {self.iteration_number}")
+
+            if self.loss == BCE:
+                logits = np.dot(self.X, self.param)
+                self.y_pred = 1 / (1 + np.exp(-logits))
+            elif self.loss == RMSE:
+                self.y_pred = np.dot(self.X, self.param)
+            
             _loss_gradients_dict = loss_and_gradients(self.X, self.y_true, self.y_pred, self.loss)
             
             self.logger.info(f"Loss: {_loss_gradients_dict['loss']}")

@@ -34,7 +34,7 @@ def time_operation(func):
     return wrapper
 
 
-class GradientDescent:
+class GradientDescent(ABC):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
     

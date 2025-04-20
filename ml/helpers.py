@@ -70,13 +70,10 @@ def get_regression_results(y_true, y_pred) -> dict:
 
 def load_sample_dataset(type: str):
     if type == 'classification':
-        data = load_iris()
-        X = data.data
-        y = data.target
-        return train_test_split(X, y, test_size=0.2, random_state=42)
+        data = load_iris()    
     elif type == 'regression':
         data = load_diabetes()
-        X = data.data
-        y = data.target
-        y = y.reshape((len(y), 1))
-        return train_test_split(X, y, test_size=0.2, random_state=42)
+    X = data.data
+    y = data.target
+    y = y.reshape((len(y), 1))
+    return train_test_split(X, y, test_size=0.2, random_state=42)
