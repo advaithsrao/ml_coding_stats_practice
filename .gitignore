@@ -6,3 +6,6 @@
 
 # Ignore all pkl files
 **/*.pkl
+
+# Remove interactive files
+**/Interactive*
