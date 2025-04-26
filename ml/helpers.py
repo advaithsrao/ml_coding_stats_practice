@@ -7,6 +7,9 @@ from sklearn.datasets import load_iris, load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
+import torch
+from torchvision import datasets, transforms
+
 
 def sigmoid(x: np.ndarray) -> np.ndarray:
     return 1 / (1 + np.exp(-x))
@@ -77,3 +80,17 @@ def load_sample_dataset(type: str):
     y = data.target
     y = y.reshape((len(y), 1))
     return train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+def load_pytorch_dataset(func = datasets.MNIST, batch_size=64, shuffle_train=True, **kwargs):
+    transform = transforms.ToTensor()
+
+    train_loader = torch.utils.data.DataLoader(
+        func('../data', train=True, download=True, transform=transform),
+        batch_size=batch_size, shuffle=shuffle_train, **kwargs)
+
+    test_loader = torch.utils.data.DataLoader(
+        func('../data', train=False, transform=transform),
+        batch_size=batch_size, shuffle=False, **kwargs)
+
+    return train_loader, test_loader

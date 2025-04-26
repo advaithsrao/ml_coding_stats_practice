@@ -17,13 +17,12 @@ packages = [
 python = "^3.10"
 jupyter = "*"
 pandas = "*"
-numpy = "*"
+numpy = "1.25.2"
 scikit-learn = "*"
 matplotlib = "*"
 flask = "*"
 torch = "2.0.0"
-torchvision = "0.15.1"
-
+torchvision = "*"
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]

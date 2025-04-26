@@ -1,0 +1,8 @@
+# Ignore all 'data' directories
+**/data/
+
+# Ignore all __pycache__
+**/__pycache__/
+
+# Ignore all pkl files
+**/*.pkl
